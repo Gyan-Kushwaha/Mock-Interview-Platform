@@ -34,6 +34,9 @@ An **AI-driven mock interview platform** leveraging **Speech-to-Text** for real-
 
 ---
 📦 Mock-Interview
+
 ├── 📁 client   # Frontend (React + Vite)
+
 ├── 📁 server   # Backend (Node.js + Express)
+
 └── README.md
