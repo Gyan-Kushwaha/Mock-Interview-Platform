@@ -62,6 +62,13 @@ const Form = () => {
     }
   };
 
+  const addTag = () => {
+    if (!input.trim()) return;
+    setTags(prev => [...prev, input.trim()]);
+    setInput("");
+    inputRef.current?.focus();
+  };
+
   const removeTag = (index) => {
     setTags(tags.filter((_, i) => i !== index));
     inputRef.current?.focus();
@@ -95,14 +102,40 @@ const Form = () => {
             <label className="mb-1 block text-sm text-slate-600">Skills</label>
             <div className="flex min-h-[35px] flex-wrap content-start rounded-md border-2 border-gray-200 p-1 text-sm focus-within:border-gray-200">
               {tags.map((tag, index) => (
-                <span key={index} className="mr-2 mb-2 flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 text-sm font-medium text-gray-800">
+                <span
+                  key={index}
+                  className="mr-2 mb-2 flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 text-sm font-medium text-gray-800"
+                >
                   {tag}
-                  <button type="button" onClick={() => removeTag(index)} className="ml-1.5 text-gray-600 hover:text-gray-800 focus:outline-none" aria-label={`Remove ${tag}`}>
+                  <button
+                    type="button"
+                    onClick={() => removeTag(index)}
+                    className="ml-1.5 text-gray-600 hover:text-gray-800 focus:outline-none"
+                    aria-label={`Remove ${tag}`}
+                  >
                     &times;
                   </button>
                 </span>
               ))}
-              <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown} className="h-8 min-w-[50px] flex-grow text-gray-700 outline-none" placeholder={tags.length === 0 ? "Type and press Enter" : ""} aria-label="Add a tag" />
+
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="h-8 min-w-[50px] flex-grow text-gray-700 outline-none"
+                placeholder={tags.length === 0 ? "Type and press Enter" : ""}
+                aria-label="Add a tag"
+              />
+
+              <button
+                type="button"
+                onClick={addTag}
+                className="ml-2 px-3 py-1 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600"
+              >
+                Add
+              </button>
             </div>
           </div>
           <label className="mb-1 mt-4 block text-sm text-slate-600">Target Company</label>
