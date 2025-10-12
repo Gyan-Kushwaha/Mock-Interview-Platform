@@ -11,7 +11,7 @@ const generateTokenAndSetCookie = (res, userId) => {
     httpOnly: true,
     secure: true,
     sameSite: "none",
-    maxAge: 18000000, // 5 hours
+    maxAge: 18000000, 
   });
 };
 
@@ -65,7 +65,7 @@ const registerUser = async (req, res) => {
   }
 };
 
-// Login user (Firebase logic removed)
+// Login user 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 

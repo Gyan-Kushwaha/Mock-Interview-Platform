@@ -1,10 +1,5 @@
-// services/ai.service.js
-
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-
-
-// Initialize the Gemini client with your API key from the .env file
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const generateQuestionsFromAI = async (interviewDetails) => {
@@ -12,8 +7,6 @@ const generateQuestionsFromAI = async (interviewDetails) => {
 
 const model = genAI.getGenerativeModel({ model: "models/gemini-2.5-flash" });
 
-
-  // This is the detailed prompt we'll send to the AI
   const prompt = `
     Based on the following interview details, generate a set of interview questions.
     Job Role: ${jobRole}
@@ -52,13 +45,11 @@ const model = genAI.getGenerativeModel({ model: "models/gemini-2.5-flash" });
     const response = await result.response;
     const text = response.text();
 
-    // The AI might return the JSON string inside markdown backticks, so we clean it up.
     const cleanedText = text.replace('```json', '').replace('```', '').trim();
     
-    // Parse the JSON string into a JavaScript object
     const generatedQuestions = JSON.parse(cleanedText);
 
-    // Add empty answer and review fields to match your schema
+    // Adding empty answer and review fields to store candidate response for evaluation phase
     const formatQuestions = (questions) => questions.map(q => ({ ...q, answer: "", review: "" }));
 
     return {
@@ -71,7 +62,6 @@ const model = genAI.getGenerativeModel({ model: "models/gemini-2.5-flash" });
 
   } catch (error) {
     console.error("Error generating questions from AI:", error);
-    // In case of an AI error, return empty arrays to avoid crashing the app
     return {
       dsaQuestions: [],
       technicalQuestions: [],
