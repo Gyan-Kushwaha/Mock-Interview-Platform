@@ -14,7 +14,7 @@ const router = express.Router();
 // Public routes
 router.post("/register", asyncHandler(registerUser));
 router.post("/login", asyncHandler(loginUser));
-router.post("/logout", asyncHandler(logOutUser)); // Technically doesn't need auth, but is user-specific
+router.post("/logout", asyncHandler(logOutUser)); 
 
 // Protected routes
 router.get("/get-user", authMiddleware, asyncHandler(getUser));

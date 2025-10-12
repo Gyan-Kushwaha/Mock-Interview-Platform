@@ -1,5 +1,4 @@
 const express = require("express");
-// This line is now corrected to import from 'gemini.controllers.js' (plural)
 const { GenerateInterviewQuestions, GenerateReview } = require("../controllers/gemini.controllers"); 
 const authMiddleware = require("../middlewares/auth.middleware");
 const { asyncHandler } = require("../utils/asyncHandler");

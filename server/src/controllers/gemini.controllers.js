@@ -3,7 +3,6 @@ require("dotenv").config();
 const MockInterviewModel = require("../models/mockinterview.model");
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-// Your controller file (e.g., mockinterview.controller.js)
 
 const GEMINI_API_URL ="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 

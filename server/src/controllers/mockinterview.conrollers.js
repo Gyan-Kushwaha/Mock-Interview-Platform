@@ -7,7 +7,6 @@ const createMockInterview = async (req, res) => {
     const userId = req.user._id;
     const { jobRole, experienceLevel, targetCompany, skills } = req.body;
 
-    // Step 1: Create the initial interview document
     const newMockInterview = new MockInterviewModel({
       user: userId,
       jobRole,
@@ -18,44 +17,31 @@ const createMockInterview = async (req, res) => {
 
     const savedMockInterview = await newMockInterview.save();
 
-    // Step 2: Generate questions using the real Gemini AI service
     const generatedContent = await generateQuestionsFromAI(savedMockInterview);
 
-    // --- NEW: Check if the AI generation failed ---
-    // If the AI service returns an empty object or has no technical questions, we know it failed.
     if (!generatedContent || !generatedContent.technicalQuestions || generatedContent.technicalQuestions.length === 0) {
-      // Throw a new error that will be caught by the main catch block.
-      throw new Error("AI service failed to generate questions. Please check the backend server logs for Gemini API errors (e.g., billing issues, invalid API key).");
+      throw new Error("AI service failed to generate questions. Please check the backend server logs for Gemini API errors or try again after sometime");
     }
-    // ---------------------------------------------
-
-    // Step 3: Update the interview with the generated questions and review fields
+   
     const updatedInterview = await MockInterviewModel.findByIdAndUpdate(
       savedMockInterview._id,
       { $set: generatedContent },
-      { new: true } // This option returns the updated document
+      { new: true } 
     );
 
-    // Step 4: Add the interview ID to the user's list
     await UserModel.findByIdAndUpdate(userId, {
       $push: { interviewList: updatedInterview._id },
     });
-
-    // Step 5: Send the complete interview object (with questions) back to the client
     res.status(201).json(updatedInterview);
   } catch (error) {
-    // The error we threw above will now be caught here and sent to the frontend.
     res.status(500).json({ message: error.message || "Error creating mock interview" });
   }
 };
 
-
-// --- Other functions (delete, edit, get) remain the same ---
-
 const deleteMockInterview = async (req, res) => {
   try {
     const userId = req.user._id;
-    const { id } = req.params;
+    const { id } = req.params;//this id is the interview id which we need to delete
     const mockInterview = await MockInterviewModel.findOneAndDelete({ _id: id, user: userId });
     if (!mockInterview) {
       return res.status(404).json({ message: "Mock interview not found or user not authorized to delete" });

@@ -3,9 +3,11 @@ const jwt = require("jsonwebtoken");
 const UserModel = require("../models/user.model");
 
 const generateTokenAndSetCookie = (res, userId) => {
-  const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
-    expiresIn: "5h",
-  });
+  const token = jwt.sign(
+    { id: userId },
+    process.env.JWT_SECRET,
+    {expiresIn: "5h",}
+  );
 
   res.cookie("token", token, {
     httpOnly: true,
