@@ -9,10 +9,6 @@ import { Eye, EyeOff } from "lucide-react";
 import { registerUser } from "@/api/user.api";
 import { useNotification } from "@/components/Notifications/NotificationContext";
 
-// Firebase is not used in the backend, so these imports can be removed.
-// import { signInWithPopup } from "firebase/auth";
-// import { auth, googleProvider } from "@/utils/firebase/firebase";
-
 export function SignupPage({ className, ...props }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -88,9 +84,6 @@ export function SignupPage({ className, ...props }) {
                   Sign Up
                 </Button>
               </div>
-              {/* <Button onClick={handleGoogleSignup} variant="outline" className="w-full mt-2">
-                Continue with Google
-              </Button> */}
               <div className="mt-4 text-center text-sm">
                 Already have an account?{" "}
                 <Link to="/login" className="underline underline-offset-4">

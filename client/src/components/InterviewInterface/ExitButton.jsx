@@ -7,7 +7,6 @@ export function ExitButton() {
   const [showExitDialog, setShowExitDialog] = useState(false)
 
   const handleExit = () => {
-    // Implement actual exit logic here
     window.location.href = '/'
   }
 

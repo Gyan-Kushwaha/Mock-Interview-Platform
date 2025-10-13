@@ -17,11 +17,9 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // First, wait for the user to be validated
-        await getUser();
+        await getUser(); 
 
-        // If validation is successful, then fetch the interviews
-        const response = await getAllInterviews();
+        const response = await getAllInterviews(); //after getting user fet all his interview in interviews array and render it
         setInterviews(response);
 
       } catch (error) {
@@ -31,9 +29,9 @@ const Dashboard = () => {
           type: "error",
           message: "You are not authorized. Please log in.",
         });
-        navigate("/login"); // Redirect to login on any failure
+        navigate("/login");
       } finally {
-        setLoading(false); // Stop loading regardless of success or failure
+        setLoading(false); 
       }
     };
 

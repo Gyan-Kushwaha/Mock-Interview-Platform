@@ -11,7 +11,7 @@ export default function AudioVisualizer() {
         Math.random() * 100
       )
       setHeights(newHeights)
-    }, 100) // Update every 100ms for smooth animation
+    }, 100) 
 
     return () => clearInterval(interval)
   }, [])

@@ -11,7 +11,6 @@ const Hero = () => {
 
   if (isFormOpen) {
     return (
-      // These new classes will center the form on the screen
       <div className="fixed top-0 left-0 z-30 flex h-screen w-screen items-center justify-center bg-black/80 p-4">
         <Form />
         <button

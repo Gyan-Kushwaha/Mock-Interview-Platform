@@ -5,7 +5,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Camera, Mic as MicSquare, Power, Video, VideoOff } from "lucide-react";
 import { Timer } from "./InterviewInterface/Timer";
 import { ExitButton } from "./InterviewInterface/ExitButton";
-import { ScreenRecorder } from "./InterviewInterface/ScreenRecorder";
 import { useNavigate } from "react-router-dom";
 import AudioVisualizer from "@/components/InterviewInterface/AudioVisualizer";
 import CodeEditor from "./CodeEdior/CodeEditor";
@@ -22,7 +21,6 @@ if (SpeechRecognition) {
   recognition.interimResults = true;
   recognition.lang = "en-US";
 }
-// ----------------------------------------------------
 
 const InterviewInterface = ({ interviewDetails }) => {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
@@ -36,11 +34,9 @@ const InterviewInterface = ({ interviewDetails }) => {
   const [codeResponse, setCodeResponse] = useState("");
   const [savedInterviewData, setSavedInterviewData] = useState(interviewDetails);
 
-  // --- State for Web Speech API ---
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [partialTranscript, setPartialTranscript] = useState("");
-  // ------------------------------
 
   const videoRef = useRef(null);
   const streamRef = useRef(null);
@@ -231,7 +227,6 @@ const InterviewInterface = ({ interviewDetails }) => {
           <span className="bg-gradient-to-r from-[#4AE087] via-[#84B7D4] to-[#9D7AEA] bg-clip-text text-transparent">AI-Powered</span> Mock Interview
         </h1>
         <div className="flex items-center gap-4">
-          <ScreenRecorder />
           <Button className="text-black" variant="outline" onClick={() => setIsEditorOpen(!isEditorOpen)}>
             {isEditorOpen ? "Close Editor" : "Open Code Editor"}
           </Button>

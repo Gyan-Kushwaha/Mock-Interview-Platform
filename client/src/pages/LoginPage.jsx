@@ -10,10 +10,6 @@ import { useNotification } from "../components/Notifications/NotificationContext
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 
-// Firebase login is removed from the backend, so this functionality is commented out.
-// import { signInWithPopup } from "firebase/auth";
-// import { auth, googleProvider } from "@/utils/firebase/firebase";
-
 export function LoginPage({ className, ...props }) {
   const { addNotification } = useNotification();
   const [loading, setLoading] = useState(false);
@@ -90,9 +86,6 @@ export function LoginPage({ className, ...props }) {
                 <Button onClick={handleLogin} className="w-full">
                   Login
                 </Button>
-                {/* <Button onClick={handleGoogleSigin} variant="outline" className="w-full">
-                  Login with Google
-                </Button> */}
               </div>
               <div className="mt-4 text-center text-sm">
                 Don&apos;t have an account?{" "}

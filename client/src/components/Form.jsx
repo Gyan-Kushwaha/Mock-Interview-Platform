@@ -1,5 +1,3 @@
-// src/components/Form.jsx
-
 import { createInterview } from "@/api/mockinterview.api";
 import { useState, useRef } from "react";
 import { useNotification } from "@/components/Notifications/NotificationContext";
@@ -40,7 +38,6 @@ const Form = () => {
         message: "Interview Created Successfully",
       });
 
-      // Navigate to the correct path defined in your App.jsx router
       if (response && response._id) {
         navigate(`/interviewinterface/${response._id}`);
       }

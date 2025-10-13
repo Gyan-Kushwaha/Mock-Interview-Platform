@@ -14,7 +14,6 @@ const Loader = () => {
           <div className="hex-brick h2"></div>
           <div className="hex-brick h3"></div>
         </div>
-        {/* ... shortened for brevity, include all the 'gel' divs from your original file ... */}
         <div className="gel c37 r3">
           <div className="hex-brick h1"></div>
           <div className="hex-brick h2"></div>

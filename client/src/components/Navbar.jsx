@@ -7,27 +7,26 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { addNotification } = useNotification();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Prevents button flash
+  const [isLoading, setIsLoading] = useState(true); 
 
-  // Check the user's login status when the component first loads
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
         await getUser();
-        setIsLoggedIn(true); // If API call succeeds, user is logged in
+        setIsLoggedIn(true); 
       } catch (error) {
-        setIsLoggedIn(false); // If API call fails, user is not logged in
+        setIsLoggedIn(false); 
       } finally {
-        setIsLoading(false); // Done checking
+        setIsLoading(false); 
       }
     };
     checkAuthStatus();
-  }, []); // The empty array ensures this runs only once
+  }, []); 
 
   const handleLogout = async () => {
     try {
       await logoutUser();
-      setIsLoggedIn(false); // Immediately update the UI
+      setIsLoggedIn(false); 
       addNotification({
         id: Date.now().toString(),
         type: "success",
@@ -55,7 +54,6 @@ const Navbar = () => {
           <div className="flex shrink-0">
             <a aria-current="page" className="flex items-center" href="/">
               <img className="h-7 w-auto" src="/title.png" alt="Logo" />
-              <p className="sr-only">Website Title</p>
             </a>
           </div>
           <div className="hidden md:flex md:items-center md:justify-center md:gap-5">
@@ -64,7 +62,6 @@ const Navbar = () => {
             </a>
           </div>
           <div className="flex items-center justify-end gap-3">
-            {/* Conditionally render the correct button based on login state */}
             {!isLoading && (
               isLoggedIn ? (
                 <button

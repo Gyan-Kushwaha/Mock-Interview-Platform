@@ -1,11 +1,8 @@
-// src/pages/InterviewInterfacePage.jsx
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from "@/components/Navbar";
 import Loader from "@/components/Loader/Loader";
 import { getInterviewByID } from "@/api/mockinterview.api";
-// Import the component from Step 1
 import InterviewInterface from '@/components/InterviewInterface';
 
 const InterviewInterfacePage = () => {
@@ -46,10 +43,8 @@ const InterviewInterfacePage = () => {
     );
   }
 
-  // Render the component from Step 1, passing the fetched data as a prop
   return (
     <>
-      
       <InterviewInterface interviewDetails={interview} />
     </>
   );

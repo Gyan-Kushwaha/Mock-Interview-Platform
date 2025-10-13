@@ -17,6 +17,7 @@ import {
   ClipboardList,
   MessageSquare,
 } from "lucide-react";
+
 const LandingPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
