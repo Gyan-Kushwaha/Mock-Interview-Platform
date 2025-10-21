@@ -12,6 +12,7 @@ const Form = () => {
   const [experienceLevel, setExperienceLevel] = useState("Fresher");
   const [jobProfile, setJobProfile] = useState("");
   const [targetCompany, setTargetCompany] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleCreateInterview = async () => {
     if (jobProfile === "" || tags.length === 0 || targetCompany === "") {
@@ -23,6 +24,7 @@ const Form = () => {
       return;
     }
     try {
+      setLoading(true);
       const formData = {
         jobRole: jobProfile,
         experienceLevel,
@@ -48,6 +50,9 @@ const Form = () => {
         type: "error",
         message: "Error creating interview.",
       });
+    }
+    finally {
+      setLoading(false); 
     }
   };
 
@@ -135,10 +140,24 @@ const Form = () => {
               </button>
             </div>
           </div>
+
           <label className="mb-1 mt-4 block text-sm text-slate-600">Target Company</label>
           <input type="text" onChange={(e) => setTargetCompany(e.target.value)} className="w-full rounded-md border border-slate-200 bg-transparent py-2 pl-3 pr-20 text-sm text-slate-700 placeholder:text-slate-400 shadow-sm transition duration-300 ease-in-out hover:border-slate-300 focus:border-slate-400 focus:shadow focus:outline-none" placeholder="Example Company" />
-          <button type="button" onClick={handleCreateInterview} className="mt-6 w-full rounded-md border border-transparent bg-slate-800 py-2 px-4 text-center text-sm text-white shadow-md transition-all hover:bg-slate-700 hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-            Create Interview
+
+          <button
+            type="button"
+            onClick={handleCreateInterview}
+            disabled={loading}
+            className="mt-6 w-full flex justify-center items-center gap-2 rounded-md border border-transparent bg-slate-800 py-2 px-4 text-center text-sm text-white shadow-md transition-all hover:bg-slate-700 hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 disabled:opacity-50"
+          >
+            {loading ? (
+              <>
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                Creating Interview...
+              </>
+            ) : (
+              "Create Interview"
+            )}
           </button>
         </div>
       </div>
